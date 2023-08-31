@@ -1,0 +1,27 @@
+.body {
+    background-color: blanchedalmond;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    width: 450px;
+    height: 450px;
+}
+
+
+.item {
+    font-size: 132px;
+    outline: 1px solid black;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+}
+
+.cross {
+    text-decoration: line-through;
+}

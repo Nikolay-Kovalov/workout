@@ -1,0 +1,326 @@
+.body {
+  padding: 30px;
+}
+
+// .form {
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: column;
+//   gap: 10px;
+//   margin-bottom: 20px;
+// }
+
+// .label-first {
+//   color: black;
+// }
+
+// .input-first {
+//   margin-left: 40px;
+// }
+
+// .input-second {
+//   margin-left: 3px;
+// }
+
+// .input-third {
+//   margin-left: 6px;
+// }
+
+// .btn {
+//   width: 150px;
+//   height: 30px;
+//   background-color: lightblue;
+// }
+
+// .list {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
+//   list-style: none;
+//   padding: 0;
+// }
+
+// .item {
+//   border: 1px solid black;
+//   padding: 16px;
+//   background-color: yellowgreen;
+//   width: 380px;
+// }
+
+// .newList {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
+//   list-style: none;
+//   padding: 0;
+// }
+
+// .newItem {
+//   border: 1px solid black;
+//   padding: 16px;
+//   background-color: yellow;
+//   width: 250px;
+// }
+
+// .newBtn {
+//   width: 150px;
+//   height: 30px;
+//   background-color: lightblue;
+// }
+
+// .video {
+//   position: relative;
+//   width: 400px;
+//   height: 400px;
+// }
+
+// .video__player {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .video__placeholder {
+//   position: absolute;
+//   width: 560px;
+//   height: 315px;
+//   background: red;
+// }
+
+// .title_class {
+//   background-color: orange;
+// }
+
+
+.list {
+  list-style: none;
+}
+
+.img {
+  width: 320px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.flex {
+  display: flex;
+  gap: 24px;
+}
+
+#validation-input {
+  border: 3px solid #bdbdbd;
+}
+
+#validation-input.valid {
+  border-color: #4caf50;
+}
+
+#validation-input.invalid {
+  border-color: #f44336;
+}
+
+.form {
+  margin-top: 120px;
+
+}
+
+.js-form {
+  display: flex;
+  max-width: 560px;
+  padding: 40px;
+  flex-direction: column;
+  gap: 24px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: wheat;
+}
+
+.js-btn {
+  width: 240px;
+  height: 40px;
+  background-color: lightskyblue;
+
+}
+
+.js-label {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.js-input {
+  width: 480px;
+}
+
+.transaction-history {
+
+
+  background-color: black;
+  color: white;
+
+}
+
+.js-th {
+
+  font-size: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.js-thead {
+  background-color: cadetblue;
+}
+
+
+
+.js-td {
+  background: white;
+  color: black;
+  padding: 4px;
+}
+
+.wrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 60px;
+}
+
+.card {
+  max-width: 480px;
+  background-color: antiquewhite;
+  border: 1px solid black;
+  margin-top: 60px;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 60px;
+}
+
+.card-wrapper {
+  margin-bottom: 60px;
+}
+
+.btn {
+  background-color: darkslateblue;
+  color: white;
+}
+
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+
+}
+
+
+.modal {
+  text-align: center;
+  background-color: #4caf50;
+  display: none;
+  width: 480px;
+  height: 240px;
+  border: 1px solid black;
+  padding: 20px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.js-open {
+  display: block;
+}
+
+.modal-open {
+
+  height: 100vh;
+  overflow: hidden;
+
+}
+
+.btn-open {
+  width: 180px;
+  height: 40px;
+  background-color: dodgerblue;
+  color: azure;
+}
+
+.btn-close {
+
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: beige;
+}
+
+.modal-text {
+  font-size: 28px;
+}
+
+.outline {
+  outline: 3px solid rgb(255, 94, 0);
+}
+
+.btn__color {
+  background-color: blue;
+  color: aliceblue;
+  width: 120px;
+  height: 32px;
+  font-size: 12px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(234, 229, 229, 0.946);
+
+}
+
+.btn__color:hover {
+  background-color: aquamarine;
+  color: blue;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: antiquewhite;
+  box-shadow: none;
+}
+
+.list {
+  display: flex;
+  gap: 24px;
+}
+
+.wrapper_colors {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.listOfcolors {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: 1280px;
+
+}
+
+.color {
+  list-style: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+
+
+}
+
+.color__text {
+  font-size: 10px;
+  height: 100%;
+
+}
