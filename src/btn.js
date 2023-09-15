@@ -31,12 +31,19 @@ function onInputChange(evt) {
 }
 prevBtn.addEventListener("click", onDecrement);
 
-  function onDecrement() {
+function onDecrement() {
+
     counter -= 50;
           inp.value = counter / 50;
         if (counter <= 50) {
   prevBtn.disabled = true;
-}
+        }
+    const totalPages = Math.ceil(responseObj.length / 50);
+   if (Number(inp.value) < totalPages) {
+  
+    nextBtn.disabled = false;
+
+  }
      let arr = responseObj.slice(counter - 50,counter)
     // const nameMarkup = createNameMarkup(responseObj);
     // const hexMarkup = createHexMarkup(responseObj);
@@ -58,7 +65,14 @@ function onIncrement() {
       inp.value = counter / 50;
     if (counter > 50) {
   prevBtn.disabled = false;
-}
+    }
+    const totalPages = Math.ceil(responseObj.length / 50);
+
+  if (Number(inp.value) === totalPages) {
+  
+    nextBtn.disabled = true;
+
+  }
     let arr = responseObj.slice(counter - 50,counter)
     // const nameMarkup = createNameMarkup(responseObj);
     // const hexMarkup = createHexMarkup(responseObj);
@@ -76,6 +90,21 @@ function onPage() {
 
   console.log(inp.value)
   counter = 50;
+  const totalPages = Math.ceil(responseObj.length / 50);
+    console.log(totalPages)
+  if (inp.value > totalPages) {
+    alert("This page does not exist");
+    return
+  }
+    if (Number(inp.value) === totalPages) {
+  
+    nextBtn.disabled = true;
+
+  } else   if (Number(inp.value) < totalPages) {
+  
+    nextBtn.disabled = false;
+
+  }
 
       let arr = responseObj.slice((counter* Number(inp.value) - 50) ,counter * Number(inp.value))
     const nameM = createName(arr);
@@ -195,6 +224,8 @@ console.log(value)
       setTimeout(() => {
         alert("You have reached the end of chosen collection")
         i = 0;
+         document.querySelector(".form-control").value = ""
+         
        },500)
 
     }
