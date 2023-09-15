@@ -265,13 +265,22 @@ function onClick(evt) {
     evt.target.classList.remove("star_active");
     const id = evt.target.closest('li').getAttribute('id');
     const result = cars.find((item) => Number(id) === item.id)
-
-
   }
-
 }
 
+// function getInfo(){
+//   return fetch('https://rickandmortyapi.com/api/character?page=20')
+//     .then(resp => {
+//       if (!resp.ok) {
+//         throw new Error(resp.statusText)
+//       }
+//       return resp.json()
+//   })
+// }
 
+// const result = getInfo();
+// result.then(data => console.log(data))
+// .catch(err => console.log(err))
 
 
 

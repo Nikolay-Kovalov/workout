@@ -1,64 +1,235 @@
 const button = document.getElementById("color_button")
 const colorText = document.querySelector(".colorText");
 const colorHex = document.querySelector(".colorHex")
+const textArea = document.querySelector(".text_area");
+const input = document.getElementById("formGroupExampleInput");
 
-console.log(colorHex.firstElementChild)
+const table = document.querySelector(".t_body");
+const hex = document.querySelector(".t_hex");
+const color = document.querySelector(".t_color");
+
+const prevBtn = document.querySelector("#prev_btn");
+const nextBtn = document.querySelector("#next_btn");
+
+const inp = document.querySelector(".inp");
+const pageBtn = document.querySelector(".page");
+
+inp.value = 1;
+prevBtn.disabled = true;
+
+let counter = 50;
+
+
 button.addEventListener("click", onClick)
+input.addEventListener("input", onInputChange)
+let responseObj = null;
+let value = "";
+// let intervalId = [];
+function onInputChange(evt) {
+  value = evt.currentTarget.value;
+  console.log(value)
+}
+prevBtn.addEventListener("click", onDecrement);
+
+  function onDecrement() {
+    counter -= 50;
+          inp.value = counter / 50;
+        if (counter <= 50) {
+  prevBtn.disabled = true;
+}
+     let arr = responseObj.slice(counter - 50,counter)
+    // const nameMarkup = createNameMarkup(responseObj);
+    // const hexMarkup = createHexMarkup(responseObj);
+    const nameM = createName(arr);
+    table.innerHTML = nameM;
+    console.log(counter)
 
 
 
+}
+// let i = 0;
+nextBtn.addEventListener("click", onIncrement);
 
+function onIncrement() {
+  // if (inp.value) {
+  //     counter = Number(inp.value * 50)
+  //   } 
+  counter += 50;
+      inp.value = counter / 50;
+    if (counter > 50) {
+  prevBtn.disabled = false;
+}
+    let arr = responseObj.slice(counter - 50,counter)
+    // const nameMarkup = createNameMarkup(responseObj);
+    // const hexMarkup = createHexMarkup(responseObj);
+    const nameM = createName(arr);
+    table.innerHTML = nameM;
+  
+    console.log(counter)
+
+  }
+
+
+pageBtn.addEventListener("click", onPage)
+
+function onPage() {
+
+  console.log(inp.value)
+  counter = 50;
+
+      let arr = responseObj.slice((counter* Number(inp.value) - 50) ,counter * Number(inp.value))
+    const nameM = createName(arr);
+  table.innerHTML = nameM;
+
+  console.log(counter)
+  counter += 50 * Number(inp.value) - 50
+        if (counter > 50) {
+  prevBtn.disabled = false;
+}
+  console.log(counter)
+  inp.value = counter / 50 ;
+
+}
 
 const urlRequest = 'https://unpkg.com/color-name-list@10.10.0/dist/colornames.json'
 let xhr = new XMLHttpRequest()
 xhr.open('GET', urlRequest)
 xhr.responseType = 'json'
-
-xhr.onload = function () {
-  const responseObj = xhr.response
-  if (colorHex.firstElementChild === null && colorText.firstElementChild === null) {
-    const nameMarkup = createNameMarkup(responseObj);
-    const hexMarkup = createHexMarkup(responseObj);
-    colorText.innerHTML = nameMarkup;
-    colorHex.innerHTML = hexMarkup;
-  }
-
+setTimeout(() => {
   console.log(responseObj)
+  let arr = responseObj.slice(0, counter)
+      const nameM = createName(arr);
+
+    table.innerHTML = nameM;
+}, 100)
+xhr.onload = function () {
+   responseObj = xhr.response
+
+
+    // const nameMarkup = createNameMarkup(responseObj);
+    // const hexMarkup = createHexMarkup(responseObj);
+
+  //   colorText.innerHTML = nameMarkup;
+  //   colorHex.innerHTML = hexMarkup;
+
+
+  // console.log(responseObj)
   return responseObj
 }
 xhr.send()
 
+// function onLoad () {
+//    const nameMarkup =  createNameMarkup(xhr.onload());
+//     const hexMarkup = createHexMarkup( xhr.onload());
+//    colorText.innerHTML = nameMarkup;
+//    colorHex.innerHTML = hexMarkup;
+// }
+// onLoad()
 
+// function createNameMarkup(arr) {
+//   const resp = arr.map(({ name }) => `<li class="color">${name}</li>`)
+//   return resp.join("")
+// }
 
-function createNameMarkup(arr) {
-  const resp = arr.map(({ name }) => `<li class="color">${name}</li>`)
-  return resp.join("")
+function createName(arr) {
+  const resp = arr.map(({ name, hex }, idx) => `<tr><th scope="row">${counter < 100 && idx+1+(inp.value && counter * Number(inp.value)-50)   || counter >= 100 && idx+1+(inp.value && counter-50 ) }</th><td class="color">${name}</td><td>${hex}</td><td><div class="sqr" style="background-color:${hex}"></div></td></tr>`
+  )
+  console.log("nbbhj")
+ return resp.join("")
 }
 
-function createHexMarkup(arr) {
-  const resp = arr.map(({ hex }) => `<li class="color">${hex}</li>`)
-  return resp.join("")
-}
 
+
+// function createHexMarkup(arr) {
+//   const resp = arr.map(({ hex }) => `<li class="color">${hex}</li>`)
+//   return resp.join("")
+// }
+
+let history = "";
+
+let result = [];
+  
+let i = 0
 
 function onClick() {
+  console.log(counter)
+console.log(value)
+
+  console.log(result)
+  // for (let i = 0; i < intervalId.length; i += 1) {
+  //   clearTimeout(intervalId[i])
+  // }
+  
   const color = document.querySelector(".form-control").value.trim()
   const response = xhr.onload();
   console.log(response)
-  const result = response.find(({ name, hex }) => {
-    return name.toLowerCase() === color.toLowerCase() || hex === color.toLowerCase()
-  })
+ if(value !== ""){ result = response.find(({ name, hex }) => {
+    return (name.toLowerCase() === color.toLowerCase() || hex === color.toLowerCase())
+  }) || (response.filter(({ name }) => {
+    return name.substring(0,value.length).toLowerCase().includes(value.substring(0,value.length).toLowerCase())
+
+  }))}
+
+
+
   console.log(color)
   console.log(result)
-  if (result) {
+  if (result.hasOwnProperty("name")) {
+       document.querySelector(".form-control").value &&  (history += " " + document.querySelector(".form-control").value.trim() + ",")
+  textArea.value = history;
     document.body.style.backgroundColor = result.hex
+    value = "";
+    result = [];
+      document.querySelector(".form-control").value = ""
+    
+
   }
+  else if (result.length) {
+    // function showColor(i) {
+    //  intervalId.push(setTimeout(() => {
+ 
+       document.body.style.backgroundColor = result[i].hex
+       history += " " + result[i].name + ","
+    textArea.value = history;
+    if (i === result.indexOf(result[result.length - 1])) {
+      setTimeout(() => {
+        alert("You have reached the end of chosen collection")
+        i = 0;
+       },500)
+
+    }
+    i += 1;
+   
+    //  }, 1000 * i))
+      
+    }
+    
+    // for (let i = 0; i < result.length; i += 1){
+    //   showColor(i)
+    // }
+    //  value = "";
+// }
+   else if (value === null || value === "") {
+    alert("Enter your color")
+  }
+
   else {
     alert('there is no such a color in this array')
+       value = "";
   }
+  // if (document.querySelector(".form-control").value = "") {
+  //   return
+  // } 
+
+
+
+
+
 }
 
-
+// document.addEventListener("scroll", function(e) {
+//   document.querySelector('.scr').scrollTo(0, document.querySelector('.scr').scrollTop + e.deltaY);
+// }, true);
 
 
     // const color = document.getElementById("01").value.replaceAll(" ", "")
