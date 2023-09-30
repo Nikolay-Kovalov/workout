@@ -12,7 +12,7 @@ function markUp() {
 markUp()
 
 container.addEventListener("click", onClick) 
-item = document.querySelector(".item")    
+const item = document.querySelector(".item")    
 console.log(item)
 let player = "X"
 let historyX = [];
