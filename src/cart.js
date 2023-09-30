@@ -141,8 +141,6 @@ function onInputChange(evt) {
 
 }
 
-
-
 let counter = 0;
 let spanCounter = 1;
 let previousId = [];
